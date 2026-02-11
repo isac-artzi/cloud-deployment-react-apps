@@ -1,0 +1,88 @@
+# ============================================================================
+# FastAPI Backend Requirements
+# ============================================================================
+#
+# This file lists all Python dependencies needed for the backend.
+# Install with: pip install -r requirements.txt
+#
+# For production deployment on Railway/Render, this file is automatically
+# read to install dependencies.
+# ============================================================================
+
+# Web Framework
+# -------------
+# FastAPI: Modern, fast web framework for building APIs
+fastapi==0.109.0
+
+# ASGI Server
+# -----------
+# Uvicorn: Lightning-fast ASGI server for running FastAPI
+uvicorn[standard]==0.27.0
+
+# File Upload Handling
+# --------------------
+# Python-multipart: Required for handling file uploads in FastAPI
+python-multipart==0.0.6
+
+# Image Processing
+# ----------------
+# Pillow (PIL): Python Imaging Library for opening, manipulating images
+Pillow==10.2.0
+
+# Deep Learning Framework
+# -----------------------
+# TensorFlow: Google's deep learning framework
+# Note: This is a large package (~500MB). For CPU-only inference:
+tensorflow==2.15.0
+# For CPU-only (smaller, faster install):
+# tensorflow-cpu==2.15.0
+
+# Keras is included with TensorFlow 2.x, but we can specify it explicitly
+# keras==2.15.0
+
+# Numerical Computing
+# -------------------
+# NumPy: Fundamental package for numerical computing
+numpy==1.26.3
+
+# Environment Variables
+# ---------------------
+# Python-dotenv: Read environment variables from .env file
+python-dotenv==1.0.0
+
+# Optional: Performance & Monitoring
+# ----------------------------------
+# Gunicorn: Production-grade WSGI server (for deployment)
+gunicorn==21.2.0
+
+# Optional: Testing Dependencies (development only)
+# ------------------------------------------------
+# pytest==7.4.4
+# httpx==0.26.0  # For testing async FastAPI endpoints
+# pytest-asyncio==0.23.3
+
+# ============================================================================
+# Notes for Students:
+# ============================================================================
+#
+# 1. TensorFlow Size:
+#    - tensorflow: ~500MB (includes GPU support)
+#    - tensorflow-cpu: ~200MB (CPU only, faster install)
+#    - For this tutorial, either works fine
+#
+# 2. Version Pinning:
+#    - We use specific versions (==) for reproducibility
+#    - In production, consider using (~=) for patch updates
+#    - Example: fastapi~=0.109.0 allows 0.109.x updates
+#
+# 3. Deployment:
+#    - Railway/Render automatically install from this file
+#    - Ensure all dependencies are listed
+#    - Test locally before deploying
+#
+# 4. Virtual Environment:
+#    - Always use a virtual environment (venv)
+#    - Keeps project dependencies isolated
+#    - Prevents conflicts with system packages
+#
+# ============================================================================

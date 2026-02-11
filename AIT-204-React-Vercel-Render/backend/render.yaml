@@ -1,0 +1,33 @@
+# Render configuration file
+# This file configures your deployment on Render.com
+
+services:
+  # Web service configuration
+  - type: web
+    name: fastapi-dl-backend
+    env: python
+    region: oregon  # Choose: oregon, frankfurt, singapore, ohio
+    plan: free      # Options: free, starter, standard, pro
+
+    # Build configuration
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+
+    # Health check
+    healthCheckPath: /health
+
+    # Environment variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: ENVIRONMENT
+        value: production
+
+    # Auto-deploy configuration
+    autoDeploy: true
+
+    # Disk storage (optional, for model caching)
+    # disk:
+    #   name: model-cache
+    #   mountPath: /opt/render/project/src/models
+    #   sizeGB: 1

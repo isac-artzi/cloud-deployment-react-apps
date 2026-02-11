@@ -1,0 +1,391 @@
+/**
+ * App.css - Main Stylesheet
+ *
+ * This file contains all the styling for our deep learning app.
+ * We use CSS custom properties (variables) for easy theme customization.
+ */
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-color: #667eea;
+  --secondary-color: #764ba2;
+  --success-color: #48bb78;
+  --danger-color: #f56565;
+  --background: #f7fafc;
+  --card-background: #ffffff;
+  --text-primary: #2d3748;
+  --text-secondary: #718096;
+  --border-color: #e2e8f0;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+/* Main App Container */
+.App {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Header Section */
+.app-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+
+.app-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.app-header p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Content Grid */
+.app-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+/* Card Components */
+.card {
+  background: var(--card-background);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card h2 {
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Drawing Canvas Styles */
+.canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.drawing-canvas {
+  border: 3px solid var(--primary-color);
+  border-radius: 8px;
+  cursor: crosshair;
+  background: white;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  touch-action: none; /* Prevents scrolling while drawing on mobile */
+}
+
+.canvas-controls {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.btn-secondary {
+  background: var(--text-secondary);
+  color: white;
+}
+
+.btn-success {
+  background: var(--success-color);
+  color: white;
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Training Section */
+.training-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.training-info {
+  background: var(--background);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary-color);
+}
+
+.training-info p {
+  margin: 0.5rem 0;
+  color: var(--text-secondary);
+}
+
+.training-info strong {
+  color: var(--text-primary);
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 24px;
+  background: var(--background);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: width 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+.status-training {
+  background: var(--primary-color);
+  color: white;
+}
+
+.status-ready {
+  background: var(--success-color);
+  color: white;
+}
+
+.status-idle {
+  background: var(--text-secondary);
+  color: white;
+}
+
+/* Prediction Display */
+.prediction-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.prediction-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.prediction-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-width: 40px;
+  color: var(--text-primary);
+}
+
+.prediction-bar-container {
+  flex: 1;
+  height: 32px;
+  background: var(--background);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  position: relative;
+}
+
+.prediction-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: width 0.3s ease;
+  border-radius: 16px;
+}
+
+.prediction-bar.top-prediction {
+  background: linear-gradient(90deg, var(--success-color), #38a169);
+  box-shadow: 0 0 10px rgba(72, 187, 120, 0.4);
+}
+
+.prediction-value {
+  min-width: 60px;
+  text-align: right;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.prediction-result {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--background);
+  border-radius: 8px;
+  margin-top: 1rem;
+  border: 2px solid var(--primary-color);
+}
+
+.prediction-result h3 {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.prediction-digit {
+  font-size: 4rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.prediction-confidence {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Info Messages */
+.info-message {
+  padding: 1rem;
+  background: #bee3f8;
+  border-left: 4px solid #3182ce;
+  border-radius: 4px;
+  color: #2c5282;
+  margin: 1rem 0;
+}
+
+.warning-message {
+  padding: 1rem;
+  background: #feebc8;
+  border-left: 4px solid #ed8936;
+  border-radius: 4px;
+  color: #7c2d12;
+  margin: 1rem 0;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-content {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .drawing-canvas {
+    max-width: 100%;
+  }
+}
+
+/* Accessibility */
+.btn:focus,
+.drawing-canvas:focus {
+  outline: 3px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+.card {
+  transition: all 0.2s ease;
+}

@@ -1,0 +1,135 @@
+# ============================================================================
+# Render Deployment Configuration
+# ============================================================================
+#
+# This file tells Render how to deploy your application
+# It's an alternative to configuring through the web dashboard
+#
+# To use this file:
+# 1. Commit it to your Git repository
+# 2. Connect your repo to Render
+# 3. Render will automatically detect and use this configuration
+#
+# Learn more: https://render.com/docs/blueprint-spec
+# ============================================================================
+
+services:
+  # --------------------------------------------------------------------------
+  # Backend Service (FastAPI)
+  # --------------------------------------------------------------------------
+  - type: web
+    name: image-classification-backend
+    runtime: python
+
+    # Build Configuration
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+
+    # Repository Configuration
+    # Update these with your actual repository details
+    # repo: https://github.com/yourusername/your-repo-name
+    # branch: main
+    # rootDir: backend  # Only if backend is in a subdirectory
+
+    # Environment Variables
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+
+      # Add any other environment variables your app needs
+      # - key: MODEL_PATH
+      #   value: ./models
+
+      # For sensitive data, use Render's secret management:
+      # - key: API_KEY
+      #   sync: false  # This means it's a secret, set in dashboard
+
+    # Health Check (optional but recommended)
+    healthCheckPath: /health
+
+    # Auto-deploy settings
+    autoDeploy: true  # Automatically deploy when you push to Git
+
+    # Scaling (free tier is limited to 1 instance)
+    # For paid plans, you can scale horizontally:
+    # numInstances: 2
+    # scaling:
+    #   minInstances: 1
+    #   maxInstances: 5
+
+    # Resource Allocation
+    # Free tier: 512 MB RAM, shared CPU
+    # For better performance, upgrade to a paid plan
+    # plan: starter  # Options: starter, standard, pro
+
+# ============================================================================
+# NOTES FOR STUDENTS
+# ============================================================================
+#
+# 1. FILE LOCATION:
+#    - This file should be in the root of your repository OR
+#    - In the same directory as your main application code
+#
+# 2. SERVICE TYPES:
+#    - web: For HTTP services (our FastAPI backend)
+#    - worker: For background jobs
+#    - cron: For scheduled tasks
+#    - static: For static sites (our React frontend)
+#
+# 3. COMMANDS EXPLAINED:
+#    - buildCommand: Runs once when deploying (install dependencies)
+#    - startCommand: Runs to start your service (launch the server)
+#    - $PORT: Render provides this automatically (usually 10000)
+#
+# 4. PYTHON VERSION:
+#    - Specified in envVars as PYTHON_VERSION
+#    - Render supports Python 3.7+
+#    - Recommend using 3.9 or 3.10 for best compatibility
+#
+# 5. AUTOMATIC DEPLOYMENT:
+#    - autoDeploy: true means deploy on every git push
+#    - Set to false if you want manual control
+#
+# 6. HEALTH CHECKS:
+#    - healthCheckPath: /health tells Render how to check if app is running
+#    - Your app should respond with 200 OK at this endpoint
+#    - Render restarts the service if health checks fail
+#
+# 7. ENVIRONMENT VARIABLES:
+#    - Listed under envVars
+#    - Can also be set in Render dashboard
+#    - Secrets should NOT be in this file - use dashboard
+#
+# 8. COST:
+#    - Free tier available (with limitations)
+#    - Services sleep after 15 min of inactivity on free tier
+#    - First request after sleeping takes ~30 seconds (cold start)
+#    - Paid plans keep services always running
+#
+# 9. LOGS:
+#    - View logs in Render dashboard
+#    - Useful for debugging deployment issues
+#    - Click on your service → "Logs" tab
+#
+# 10. TROUBLESHOOTING:
+#     - Build fails: Check build logs, verify requirements.txt
+#     - App crashes: Check application logs, verify start command
+#     - Can't connect: Check firewall, verify CORS settings
+#
+# ============================================================================
+# ALTERNATIVE: Manual Configuration (Without render.yaml)
+# ============================================================================
+#
+# If you prefer not to use this file, configure in Render dashboard:
+#
+# 1. Create New Web Service
+# 2. Connect your Git repository
+# 3. Configure:
+#    - Name: your-app-backend
+#    - Environment: Python 3
+#    - Region: Choose closest to your users
+#    - Branch: main
+#    - Build Command: pip install -r requirements.txt
+#    - Start Command: uvicorn app:app --host 0.0.0.0 --port $PORT
+#
+# ============================================================================

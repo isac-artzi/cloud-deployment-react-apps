@@ -1,0 +1,68 @@
+# ============================================================================
+# Python Dependencies for FastAPI Backend
+# ============================================================================
+#
+# This file lists all Python packages needed for the backend to run
+# Install with: pip install -r requirements.txt
+#
+# Purpose of each package:
+# - fastapi: Web framework for building the API
+# - uvicorn: ASGI server to run FastAPI
+# - python-multipart: Required for file uploads
+# - Pillow: Image processing library
+# - torch: PyTorch deep learning framework
+# - torchvision: Pre-trained models and image transforms
+# ============================================================================
+
+# Web Framework
+fastapi==0.104.1           # Modern web framework for building APIs
+uvicorn[standard]==0.24.0  # ASGI server (runs FastAPI apps)
+                           # [standard] includes extra performance features
+
+# File Upload Support
+python-multipart==0.0.6    # Required for handling file uploads in FastAPI
+
+# Image Processing
+Pillow==10.1.0             # PIL (Python Imaging Library) for image handling
+
+# Deep Learning - PyTorch
+# Note: These are CPU versions. For GPU support, see PyTorch website
+torch==2.1.0               # PyTorch deep learning framework
+torchvision==0.16.0        # Computer vision models and utilities
+
+# Optional but recommended
+# numpy==1.24.3            # Numerical computing (installed with torch)
+# aiofiles==23.2.1         # Async file operations (optional)
+
+# ============================================================================
+# NOTES FOR STUDENTS
+# ============================================================================
+#
+# 1. VERSION NUMBERS:
+#    - == means exact version (recommended for production)
+#    - >= means this version or higher (more flexible but less predictable)
+#    - Example: fastapi>=0.104.0 would allow 0.104.1, 0.105.0, etc.
+#
+# 2. PYTORCH INSTALLATION:
+#    - These are CPU versions (work everywhere)
+#    - For GPU support (faster but needs NVIDIA GPU):
+#      Visit https://pytorch.org/ and get the right installation command
+#
+# 3. RENDER DEPLOYMENT:
+#    - Render automatically installs these dependencies
+#    - Build time: ~3-5 minutes on first deploy (downloading PyTorch)
+#    - Subsequent deploys are faster (cached)
+#
+# 4. LOCAL DEVELOPMENT:
+#    - Create virtual environment first:
+#      python -m venv venv
+#      source venv/bin/activate  (on Windows: venv\Scripts\activate)
+#    - Then install:
+#      pip install -r requirements.txt
+#
+# 5. TROUBLESHOOTING:
+#    - "No matching distribution found": Check Python version (need 3.8+)
+#    - "Could not build wheels": May need C++ compiler for some packages
+#    - Memory errors: PyTorch is large (~700MB), ensure sufficient space
+#
+# ============================================================================

@@ -1,0 +1,236 @@
+# ============================================================================
+# Git Ignore File
+# ============================================================================
+# This file tells Git which files and folders to ignore (not track)
+# These files should not be committed to version control
+#
+# Why ignore files?
+# - Sensitive data (API keys, passwords)
+# - Generated files (build outputs)
+# - Dependencies (can be reinstalled)
+# - System files (OS-specific)
+# - Large files (models, datasets)
+# ============================================================================
+
+# ============================================================================
+# Python Backend
+# ============================================================================
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / Packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# ============================================================================
+# React Frontend
+# ============================================================================
+
+# Dependencies
+frontend/node_modules/
+node_modules/
+
+# Production Build
+frontend/build/
+build/
+
+# Testing
+coverage/
+
+# Misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# ============================================================================
+# Environment Variables
+# ============================================================================
+
+# Never commit .env files (they contain secrets)
+.env
+.env.production
+
+# Exception: .env.example is OK (it's a template)
+# !.env.example
+
+# ============================================================================
+# Operating System
+# ============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# ============================================================================
+# IDEs and Editors
+# ============================================================================
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# ============================================================================
+# Deep Learning / ML
+# ============================================================================
+
+# Model files (usually large)
+*.pth
+*.pt
+*.h5
+*.pb
+*.onnx
+models/
+checkpoints/
+
+# Datasets (usually large)
+data/
+datasets/
+*.csv
+*.tsv
+
+# Exception: Small test files are OK
+!test_image.jpg
+!sample.csv
+
+# ============================================================================
+# Temporary Files
+# ============================================================================
+
+# Temporary directories
+tmp/
+temp/
+*.tmp
+
+# Upload directories (if storing user uploads)
+uploads/
+
+# Cache directories
+.cache/
+*.cache
+
+# ============================================================================
+# Documentation Build
+# ============================================================================
+
+# Sphinx documentation
+docs/_build/
+
+# ============================================================================
+# IMPORTANT NOTES FOR STUDENTS
+# ============================================================================
+#
+# 1. Why use .gitignore?
+#    - Keeps repository clean and small
+#    - Protects sensitive information
+#    - Prevents committing generated files
+#    - Makes collaboration easier
+#
+# 2. What to commit:
+#    - Source code (.py, .js, .jsx)
+#    - Configuration files (package.json, requirements.txt)
+#    - Documentation (README.md, guides)
+#    - Small static assets (images, icons)
+#
+# 3. What NOT to commit:
+#    - API keys and secrets (.env)
+#    - Dependencies (node_modules, venv)
+#    - Build outputs (build/, dist/)
+#    - Large files (models, datasets)
+#    - System files (.DS_Store, Thumbs.db)
+#
+# 4. Checking ignored files:
+#    - See all ignored files: git status --ignored
+#    - Check if file is ignored: git check-ignore -v filename
+#
+# 5. Accidentally committed sensitive data?
+#    - Remove from history: git filter-branch or BFG Repo-Cleaner
+#    - Change the exposed secrets immediately!
+#
+# ============================================================================

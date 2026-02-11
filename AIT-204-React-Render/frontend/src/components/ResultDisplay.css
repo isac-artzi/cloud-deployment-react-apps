@@ -1,0 +1,375 @@
+/**
+ * ResultDisplay Component Styles
+ *
+ * Styles for displaying classification results with:
+ * - Visual feedback (success/error states)
+ * - Confidence bars
+ * - Color-coded confidence levels
+ * - Smooth animations
+ */
+
+/* Main container */
+.result-display {
+  width: 100%;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.4s ease-out;
+}
+
+/* Slide in animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   SUCCESS STATE
+   ============================================================================ */
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.success-icon {
+  width: 48px;
+  height: 48px;
+  color: #48bb78;
+  flex-shrink: 0;
+}
+
+.result-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0;
+}
+
+.result-filename {
+  font-size: 0.875rem;
+  color: #718096;
+  margin: 0.25rem 0 0 0;
+}
+
+/* ============================================================================
+   ERROR STATE
+   ============================================================================ */
+
+.error-container {
+  text-align: center;
+  padding: 2rem;
+}
+
+.error-icon {
+  width: 64px;
+  height: 64px;
+  color: #f56565;
+  margin: 0 auto 1rem;
+}
+
+.error-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #c53030;
+  margin-bottom: 0.5rem;
+}
+
+.error-message {
+  font-size: 1rem;
+  color: #2d3748;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fff5f5;
+  border-radius: 8px;
+  border-left: 4px solid #f56565;
+}
+
+.error-hint {
+  font-size: 0.875rem;
+  color: #718096;
+}
+
+/* ============================================================================
+   PREDICTIONS LIST
+   ============================================================================ */
+
+.predictions-container {
+  margin-bottom: 1.5rem;
+}
+
+.predictions-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 1rem;
+}
+
+/* Individual prediction item */
+.prediction-item {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #f7fafc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.prediction-item:hover {
+  background-color: #edf2f7;
+  transform: translateX(4px);
+}
+
+/* Rank number badge */
+.prediction-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Prediction content */
+.prediction-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.prediction-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2d3748;
+  flex: 1;
+}
+
+.prediction-confidence {
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* Confidence level colors */
+.confidence-high {
+  background-color: #c6f6d5;
+  color: #22543d;
+}
+
+.confidence-medium {
+  background-color: #feebc8;
+  color: #7c2d12;
+}
+
+.confidence-low {
+  background-color: #fed7d7;
+  color: #742a2a;
+}
+
+/* ============================================================================
+   CONFIDENCE BAR
+   ============================================================================ */
+
+.confidence-bar-container {
+  width: 100%;
+  height: 8px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.confidence-bar {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animated gradient inside bar */
+.confidence-bar-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Bar colors based on confidence */
+.confidence-bar.confidence-high {
+  background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+}
+
+.confidence-bar.confidence-medium {
+  background: linear-gradient(90deg, #ed8936 0%, #dd6b20 100%);
+}
+
+.confidence-bar.confidence-low {
+  background: linear-gradient(90deg, #f56565 0%, #e53e3e 100%);
+}
+
+/* ============================================================================
+   FOOTER INFO
+   ============================================================================ */
+
+.result-footer {
+  padding-top: 1.5rem;
+  border-top: 2px solid #e2e8f0;
+}
+
+.result-info {
+  font-size: 0.875rem;
+  color: #718096;
+  line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.info-icon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .result-display {
+    padding: 1.5rem;
+    margin: 1rem auto;
+  }
+
+  .result-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .result-title {
+    font-size: 1.25rem;
+  }
+
+  .prediction-item {
+    padding: 0.75rem;
+  }
+
+  .prediction-rank {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .prediction-label {
+    font-size: 0.875rem;
+  }
+
+  .prediction-confidence {
+    font-size: 0.875rem;
+    padding: 0.125rem 0.5rem;
+  }
+
+  .prediction-header {
+    flex-wrap: wrap;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .result-display {
+    box-shadow: none;
+    border: 1px solid #e2e8f0;
+  }
+
+  .confidence-bar-inner {
+    animation: none;
+  }
+
+  .prediction-item:hover {
+    transform: none;
+  }
+}
+
+/* ============================================================================
+   ACCESSIBILITY
+   ============================================================================ */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .confidence-bar {
+    border: 1px solid currentColor;
+  }
+
+  .prediction-rank {
+    border: 2px solid white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .result-display {
+    animation: none;
+  }
+
+  .confidence-bar {
+    transition: none;
+  }
+
+  .confidence-bar-inner {
+    animation: none;
+  }
+
+  .prediction-item {
+    transition: none;
+  }
+}

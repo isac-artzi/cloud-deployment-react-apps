@@ -1,0 +1,59 @@
+# Project-wide gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+*.egg-info/
+dist/
+build/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+*.log
+
+# Build directories
+frontend/build/
+backend/dist/
+
+# Model files (if large)
+*.h5
+*.pb
+*.ckpt
+
+# Test files
+*.test.js
+coverage/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Vercel
+.vercel
+
+# Render
+.render

@@ -1,0 +1,23 @@
+# FastAPI and server
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-multipart==0.0.6
+
+# Deep Learning
+tensorflow==2.15.0
+# Alternative: tensorflow-cpu==2.15.0  # Use this for CPU-only (smaller, faster deployment)
+
+# Image processing
+Pillow==10.2.0
+numpy==1.24.3
+
+# Utilities
+python-dotenv==1.0.0
+
+# Optional: PyTorch (uncomment if using PyTorch instead of TensorFlow)
+# torch==2.1.2
+# torchvision==0.16.2
+
+# Optional: Additional ML libraries
+# scikit-learn==1.4.0
+# opencv-python==4.9.0.80

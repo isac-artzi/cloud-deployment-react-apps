@@ -1,0 +1,13 @@
+# FastAPI - Modern, fast web framework for building APIs
+fastapi==0.109.0
+
+# Uvicorn - ASGI server for running FastAPI
+uvicorn[standard]==0.27.0
+
+# Pydantic - Data validation using Python type annotations
+pydantic==2.5.3
+
+# Python-multipart - Required for form data and file uploads
+python-multipart==0.0.6
+
+# CORS middleware - Already included in FastAPI, no separate package needed
